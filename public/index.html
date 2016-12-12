@@ -4,64 +4,39 @@
     <meta charset="UTF-8">
     <title>Getting REST</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <script>
 
     $(function () {
-        $('#get').click();
+        $(document).ready(simpleGet());
     });
 
     function simpleGet() {
         $.get('/api/topic', function (data, status) {
-            console.dir(data);
-            console.log("status " + status);
-        })
-    }
-
-    function fullSuntax() {
-        $.ajax({
-            url: "/api/topic",
-            data: {
-                id: 123
-            },
-            type: "GET",
-            dataType : "json"
-        })
-            .done(function( json ) {
-                $( "<h1>" ).text( json.title ).appendTo( "body" );
-                $( "<div class=\"content\">").html( json.html ).appendTo( "body" );
-            })
-            .fail(function( xhr, status, errorThrown ) {
-                alert( "Sorry, there was a problem!" );
-                console.log( "Error: " + errorThrown );
-                console.log( "Status: " + status );
-                console.dir( xhr );
-            })
-            .always(function( xhr, status ) {
-                alert( "The request is complete!" );
-            });
-    }
-
-    function runRequestNativeWay() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("demo").innerHTML = this.responseText;
+            for (var i = 0; i < data.length; i++) {
+                var author = $('<div>').append(data[i].author).addClass('author');
+                var d = new Date(data[i].date);
+                var postDate = $('<div>').append(d.toDateString()
+                    +" "+ d.getHours()
+                    +":"+(d.getMinutes()<10?'0':'') + d.getMinutes()).addClass("post-date");
+                var name = $('<div>').append(data[i].name).addClass('name');
+                var text = $('<div>').append(data[i].text).addClass('topic-text');
+                var topic = $('<div>').append(author).append(name).append(postDate).append(text).addClass('topic');
+                $('.blog').append(topic);
             }
-        };
-        xhttp.open("GET", "ajax_info.txt", true);
-        xhttp.send();
+            console.dir(data);
+            console.dir(status);
+        })
     }
+
 </script>
 
 <body>
 
-<form action="/" method="post">
-    <input type="text" value="1" name="name">
-    <button type="submit">Save</button>
-</form>
+<H1>My first blog</H1>
 
-<button id="get">Get</button>
+<div class = "blog"></div>
 
 </body>
 </html>

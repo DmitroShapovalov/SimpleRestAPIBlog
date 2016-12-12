@@ -1,8 +1,53 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #d0d0e5;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  color: #1300a6;
+}
+
+.topic {
+  height: auto;
+  width: 100%;
+  border: 3px solid #bbc7e5;
+  border-radius: 10px;
+  min-height: 100px;
+}
+
+.blog {
+  padding-top: 50px;
+  height: 100%;
+  width: 100%;
+}
+
+.author {
+   position: inherit;
+   padding-top: 5px;
+   padding-left: 10px;
+   display:inline-block;
+   width: 200px;
+ }
+
+.post-date {
+  position: inherit;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.name {
+  position: inherit;
+  padding-top: 5px;
+  padding-left: 50%;
+  display:inline-block;
+  width: 200px;
 }
