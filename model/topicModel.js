@@ -14,7 +14,8 @@ Topic.prototype.getSimpleModel = function () {
     return {
         name: this.name,
         author: this.author,
-        date: this.date
+        date: this.date,
+        text: this.text
     }
 };
 

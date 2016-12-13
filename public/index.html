@@ -4,39 +4,25 @@
     <meta charset="UTF-8">
     <title>Getting REST</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="Main.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<script>
-
-    $(function () {
-        $(document).ready(simpleGet());
-    });
-
-    function simpleGet() {
-        $.get('/api/topic', function (data, status) {
-            for (var i = 0; i < data.length; i++) {
-                var author = $('<div>').append(data[i].author).addClass('author');
-                var d = new Date(data[i].date);
-                var postDate = $('<div>').append(d.toDateString()
-                    +" "+ d.getHours()
-                    +":"+(d.getMinutes()<10?'0':'') + d.getMinutes()).addClass("post-date");
-                var name = $('<div>').append(data[i].name).addClass('name');
-                var text = $('<div>').append(data[i].text).addClass('topic-text');
-                var topic = $('<div>').append(author).append(name).append(postDate).append(text).addClass('topic');
-                $('.blog').append(topic);
-            }
-            console.dir(data);
-            console.dir(status);
-        })
-    }
-
-</script>
 
 <body>
 
 <H1>My first blog</H1>
 
 <div class = "blog"></div>
+
+<button class="add-button">Add topic</button>
+<br>
+<input type="text" class="author-input" placeholder="Write your name">
+<br>
+<input type="text" class="name-input" placeholder="Write the topic">
+<br>
+<input type="text" class="text-input" placeholder="Please write your thoughts about this...">
+<br>
+<button class="send-button">Send</button>
 
 </body>
 </html>
