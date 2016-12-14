@@ -25,9 +25,9 @@ router
         }
     })
     .post('/', function (req, res, next) {
-        var body = req.body;
+        var body = JSON.parse(req);
         console.log(body);
-        topics.push(new Topic(body.name, body.author, body.date, body.text));
+        topics.push(new Topic(body.name, body.author, body.text, body.date));
         res.sendStatus(201);
     })
     .put('/:name/', function (req, res, next) {
